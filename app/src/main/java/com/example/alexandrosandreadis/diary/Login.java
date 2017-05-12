@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +27,7 @@ public class Login extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkPasswordInput(passwordText.toString());
+                checkPasswordInput(passwordText.getText().toString());
             }
         });
     }
@@ -34,16 +35,15 @@ public class Login extends AppCompatActivity {
         String pref=MainActivity.MyPREFERENCES;
         String pass=MainActivity.Password;
         SharedPreferences sharedPref=getSharedPreferences(pref, Context.MODE_PRIVATE);
-
         if(sharedPref.contains(pass)){
-            if(passIn== sharedPref.getString(pass,null)){
+            if(passIn.equals( sharedPref.getString(pass,null))){
                 startActivity(new Intent(Login.this, Notes.class));
             }else{
-                Toast.makeText(getApplicationContext(),"Wrong Password",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Wrong Password"+passIn,Toast.LENGTH_SHORT).show();
             }
 
         }else {
-            //This shouldn't happen
+            Log.d("Tag","This shouldn't happen");
         }
         return true;
     }

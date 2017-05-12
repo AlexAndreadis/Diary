@@ -17,8 +17,7 @@ public class Notes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notes);
 
-        createPasswordButton = (Button) findViewById(R.id.loginButton);
-
+        createPasswordButton = (Button) findViewById(R.id.createNewPasswordButton);
         createPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
