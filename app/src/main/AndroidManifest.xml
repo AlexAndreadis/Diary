@@ -17,14 +17,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Notes"
-            android:label="@string/app_name" />
-        <activity
-            android:name=".Login"
+            android:name=".Unlock"
             android:label="@string/app_name" />
         <activity
             android:name=".CreatePassword"
             android:label="@string/app_name" />
+        <activity android:name=".Entry" />
+        <activity android:name=".EntryList"/>
+
     </application>
 
 </manifest>

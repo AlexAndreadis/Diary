@@ -16,13 +16,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SharedPreferences sharedPref=getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-
-
         if( sharedPref.contains(Password)){
-            startActivity(new Intent(MainActivity.this, Login.class));
+            startActivity(new Intent(MainActivity.this, Unlock.class));
         } else {
-            startActivity(new Intent(MainActivity.this, Notes.class));
+            startActivity(new Intent(MainActivity.this, CreatePassword.class));
         }
+        super.finish();
 
     }
 }
