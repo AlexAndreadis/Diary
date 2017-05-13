@@ -20,7 +20,7 @@ public class Entry extends AppCompatActivity {
     SimpleDateFormat sdf;
     String currentDate;
     Button saveButton;
-    DBHelper mydb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +31,7 @@ public class Entry extends AppCompatActivity {
         sdf = new SimpleDateFormat("EEEE dd MMMM yyyy", Locale.getDefault());
         currentDate = sdf.format(new Date());
         date.setText(currentDate);
-        mydb=new DBHelper(this);
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,6 +43,7 @@ public class Entry extends AppCompatActivity {
     }
 
     void saveEntry(){
+        DBHelper mydb=new DBHelper(this);
         mydb.insertEntry(currentDate,entryText.getText().toString());
         startActivity(new Intent(Entry.this, EntryList.class));
         Entry.super.finish();

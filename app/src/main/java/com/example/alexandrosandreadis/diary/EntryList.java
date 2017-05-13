@@ -20,27 +20,26 @@ public class EntryList extends AppCompatActivity {
 
     ListView listView;
     FloatingActionButton newEntryButton;
-    DBHelper mydb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrylist);
         listView=(ListView) findViewById(R.id.listView);
         newEntryButton= (FloatingActionButton) findViewById(R.id.newEntryFloatingButton);
-        mydb=new DBHelper(this);
         initializeList();
         newEntryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(EntryList.this, Entry.class));
-                EntryList.super.finish();;
+                EntryList.super.finish();
             }
         });
 
     }
 
     void initializeList(){
-
+        DBHelper mydb=new DBHelper(this);
         ArrayList<String> dateEntries=mydb.getAllDatesFromEntries();
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
                 this,android.R.layout.simple_list_item_1,dateEntries
