@@ -40,18 +40,11 @@ public class Unlock extends AppCompatActivity {
                 super.finish();
             }else{
                 Toast.makeText(getApplicationContext(),"Wrong Password",Toast.LENGTH_SHORT).show();
-<<<<<<< Updated upstream:app/src/main/java/com/example/alexandrosandreadis/diary/Unlock.java
 
             }
 
         }else {
 
-=======
-            }
-
-        }else {
-            //This Should Happen
->>>>>>> Stashed changes:app/src/main/java/com/example/alexandrosandreadis/diary/Login.java
         }
 
         return true;
