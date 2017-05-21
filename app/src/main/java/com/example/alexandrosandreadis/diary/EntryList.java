@@ -7,26 +7,32 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class EntryList extends AppCompatActivity {
 
 
     ListView listView;
     FloatingActionButton newEntryButton;
-
+    Cursor data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrylist);
         listView=(ListView) findViewById(R.id.listView);
         newEntryButton= (FloatingActionButton) findViewById(R.id.newEntryFloatingButton);
+
         initializeList();
         newEntryButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,10 +46,24 @@ public class EntryList extends AppCompatActivity {
 
     void initializeList(){
         DBHelper mydb=new DBHelper(this);
-        ArrayList<String> dateEntries=mydb.getAllDatesFromEntries();
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
-                this,android.R.layout.simple_list_item_1,dateEntries
-        );
-        listView.setAdapter(arrayAdapter);
+        data= mydb.readDatabase();
+        final ArrayList<ArrayList<String>> valuesList=mydb.getAllEntries();
+        ArrayAdapter<String> adapter =new ArrayAdapter<String> (this, android.R.layout.simple_list_item_2, android.R.id.text1,valuesList.get(0))
+        {
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
+                TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+                text1.setText(valuesList.get(0).get(position));
+                text2.setText(valuesList.get(1).get(position));
+                return view;
+            }
+        };
+
+        listView.setAdapter(adapter);
+
+
     }
+
+
 }

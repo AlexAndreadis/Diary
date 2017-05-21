@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class Entry extends AppCompatActivity {
@@ -44,8 +45,21 @@ public class Entry extends AppCompatActivity {
 
     void saveEntry(){
         DBHelper mydb=new DBHelper(this);
-        mydb.insertEntry(currentDate,entryText.getText().toString());
-        startActivity(new Intent(Entry.this, EntryList.class));
-        Entry.super.finish();
+        String text=entryText.getText().toString();
+        if(!checkIfOnlySpaces(text)){
+            mydb.insertEntry(currentDate,entryText.getText().toString());
+            startActivity(new Intent(Entry.this, EntryList.class));
+            Entry.super.finish();
+        }else{
+            Toast.makeText(this, "You didn't write anything", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    boolean checkIfOnlySpaces(String input){
+        for (char c : input.toCharArray()){
+            if (c!=' ') return false;
+        }
+        return true;
     }
 }
