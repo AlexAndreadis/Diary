@@ -65,4 +65,17 @@ public class DBHelper extends SQLiteOpenHelper {
        SQLiteDatabase db = this.getReadableDatabase();
        return db.rawQuery("SELECT * FROM "+ENTRIES_TABLE_NAME,null);
    }
+
+   public String findFromDatabase(int id,String columnName){
+
+       SQLiteDatabase db=this.getReadableDatabase();
+       Cursor result = db.rawQuery("SELECT * FROM "+ENTRIES_TABLE_NAME+" WHERE "+ENTRIES_COLUMN_ID+"="+id,null);
+       result.moveToFirst();
+       return result.getString(result.getColumnIndex(columnName));
+
+   }
+   public void updateEntry(String newText,int id){
+       SQLiteDatabase db=this.getReadableDatabase();
+       db.execSQL("UPDATE "+ENTRIES_TABLE_NAME+" SET "+ENTRIES_COLUMN_ENTRY+" = '"+newText+"' WHERE "+ENTRIES_COLUMN_ID+" = "+id);
+   }
 }

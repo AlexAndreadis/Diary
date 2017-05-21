@@ -6,8 +6,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -41,6 +43,25 @@ public class EntryList extends AppCompatActivity {
                 EntryList.super.finish();
             }
         });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(EntryList.this,Entry.class);
+                Log.v("Position", Integer.toString(position));
+                int entryId= findIdFromPosition(position);
+                intent.putExtra("entryId",entryId);
+                startActivity(intent);
+                EntryList.super.finish();
+            }
+        });
+
+    }
+
+    int findIdFromPosition(int position){
+        data.move(position+1);//+1 Giati mallon ksekinaei apo 1 enw ta position apo 0
+        int id =data.getInt(data.getColumnIndex(DBHelper.ENTRIES_COLUMN_ID));
+
+        return id;
 
     }
 

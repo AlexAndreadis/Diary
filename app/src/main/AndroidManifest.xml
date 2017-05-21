@@ -23,8 +23,8 @@
             android:name=".CreatePassword"
             android:label="@string/app_name" />
         <activity android:name=".Entry" />
-        <activity android:name=".EntryList"/>
-
+        <activity android:name=".EntryList" />
+        <activity android:name=".EntryListDelete"></activity>
     </application>
 
 </manifest>
