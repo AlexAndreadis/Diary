@@ -78,4 +78,8 @@ public class DBHelper extends SQLiteOpenHelper {
        SQLiteDatabase db=this.getReadableDatabase();
        db.execSQL("UPDATE "+ENTRIES_TABLE_NAME+" SET "+ENTRIES_COLUMN_ENTRY+" = '"+newText+"' WHERE "+ENTRIES_COLUMN_ID+" = "+id);
    }
+   public void deleteByID(int id){
+       SQLiteDatabase db=this.getReadableDatabase();
+       db.execSQL("DELETE FROM "+ENTRIES_TABLE_NAME+" WHERE "+ENTRIES_COLUMN_ID+" ='"+id+"'");
+   }
 }

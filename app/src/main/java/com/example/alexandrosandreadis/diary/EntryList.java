@@ -27,6 +27,7 @@ public class EntryList extends AppCompatActivity {
 
     ListView listView;
     FloatingActionButton newEntryButton;
+    FloatingActionButton deleteEntryButton;
     Cursor data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class EntryList extends AppCompatActivity {
         setContentView(R.layout.activity_entrylist);
         listView=(ListView) findViewById(R.id.listView);
         newEntryButton= (FloatingActionButton) findViewById(R.id.newEntryFloatingButton);
-
+        deleteEntryButton = (FloatingActionButton) findViewById(R.id.deleteEntryFloatingButton);
         initializeList();
         newEntryButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +44,16 @@ public class EntryList extends AppCompatActivity {
                 EntryList.super.finish();
             }
         });
+        if (data!=null){
+            deleteEntryButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(EntryList.this, EntryListDelete.class));
+                    EntryList.super.finish();
+                }
+            });
+        }
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -58,7 +69,7 @@ public class EntryList extends AppCompatActivity {
     }
 
     int findIdFromPosition(int position){
-        data.move(position+1);//+1 Giati mallon ksekinaei apo 1 enw ta position apo 0
+        data.moveToPosition(position);
         int id =data.getInt(data.getColumnIndex(DBHelper.ENTRIES_COLUMN_ID));
 
         return id;

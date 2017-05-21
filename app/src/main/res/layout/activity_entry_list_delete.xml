@@ -27,8 +27,9 @@
         android:layout_marginBottom="8dp" />
 
     <ListView
-        android:layout_width="361dp"
-        android:layout_height="465dp"
+        android:id="@+id/listViewDelete"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_marginBottom="0dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonCancel"
         android:layout_marginLeft="0dp"
