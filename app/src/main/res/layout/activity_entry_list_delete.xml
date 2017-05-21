@@ -6,4 +6,25 @@
     android:layout_height="match_parent"
     tools:context="com.example.alexandrosandreadis.diary.EntryListDelete">
 
+    <ListView
+        android:layout_width="0dp"
+        android:layout_height="432dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp" />
+
+    <Button
+        android:id="@+id/buttonCancel"
+        android:layout_width="264dp"
+        android:layout_height="495dp"
+        android:text="Cancel"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <Button
+        android:id="@+id/buttonDelete"
+        android:layout_width="88dp"
+        android:layout_height="48dp"
+        android:text="DELETE"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp" />
 </android.support.constraint.ConstraintLayout>
