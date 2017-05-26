@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +20,7 @@ public class Unlock extends AppCompatActivity {
     EditText passwordText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unlock);
         unlockButton =(Button) findViewById(R.id.unlockButton);
@@ -36,6 +38,7 @@ public class Unlock extends AppCompatActivity {
         SharedPreferences sharedPref=getSharedPreferences(pref, Context.MODE_PRIVATE);
         if(sharedPref.contains(pass)){
             if(passIn.equals( sharedPref.getString(pass,null))){
+                startActivity(new Intent(this,EntryList.class));
                 startService(new Intent(this,AccelerometerService.class));
                 super.finish();
             }else{

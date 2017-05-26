@@ -30,6 +30,9 @@
         <activity android:name=".EntryList" />
         <activity android:name=".EntryListDelete"></activity>
         <activity android:name=".Scanner"></activity>
+        <service
+            android:name=".AccelerometerService"
+            android:enabled="true"/>
     </application>
 
 </manifest>
