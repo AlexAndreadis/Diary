@@ -20,7 +20,6 @@ public class Unlock extends AppCompatActivity {
     EditText passwordText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unlock);
         unlockButton =(Button) findViewById(R.id.unlockButton);
@@ -43,7 +42,6 @@ public class Unlock extends AppCompatActivity {
                 super.finish();
             }else{
                 Toast.makeText(getApplicationContext(),"Wrong Password",Toast.LENGTH_SHORT).show();
-
             }
 
         }else {

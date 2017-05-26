@@ -7,6 +7,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.IBinder;
+import android.os.Process;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
@@ -18,7 +19,7 @@ public class AccelerometerService extends Service implements SensorEventListener
     private SensorManager sensorManager=null;
     private long lastUpdate = 0;
     private float last_x, last_y, last_z;
-    private static final int SHAKE_THRESHOLD = 150;
+    private static final int SHAKE_THRESHOLD = 300;
 
     @Nullable
     @Override
@@ -52,9 +53,9 @@ public class AccelerometerService extends Service implements SensorEventListener
                 float speed = Math.abs(x + y + z - last_x - last_y - last_z)/ diffTime * 10000;
 
                 if (speed > SHAKE_THRESHOLD) {
-
                     super.stopSelf();
-                    android.os.Process.killProcess(android.os.Process.myPid());
+                    android.os.Process.killProcess(Process.myPid());
+
                 }
                 last_x = x;
                 last_y = y;

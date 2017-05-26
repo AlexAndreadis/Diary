@@ -1,5 +1,7 @@
 package com.example.alexandrosandreadis.diary;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;

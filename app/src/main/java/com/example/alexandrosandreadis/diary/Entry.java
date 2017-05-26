@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.Locale;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -12,6 +14,8 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
@@ -38,15 +42,35 @@ public  class Entry extends AppCompatActivity  {
         entryText=(LineEditText) findViewById(R.id.entry);
         entryText.setMovementMethod(LinkMovementMethod.getInstance());
 
+
         Intent intent= getIntent();
         if(intent.hasExtra("entryId")){ //Check if was chosen from the list or is a new entry
             saveButton.setEnabled(false);
+            saveButton.setVisibility(View.INVISIBLE);
             final int id =intent.getIntExtra("entryId",0);
             populatedFieldsFromDB(id);
+            entryText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    saveButton.setEnabled(true);
+                    saveButton.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
             entryText.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     saveButton.setEnabled(true);
+                    saveButton.setVisibility(View.VISIBLE);
                 }
             });
             saveButton.setOnClickListener(new View.OnClickListener() {

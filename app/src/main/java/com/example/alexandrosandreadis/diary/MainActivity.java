@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String MyPREFERENCES="MyPrefs";
     public static final String Password="password";
+    public static final String BroadcastFin="WeGotCaught";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +23,5 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, CreatePassword.class));
         }
         super.finish();
-
     }
 }
