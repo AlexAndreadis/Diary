@@ -3,4 +3,6 @@
     <string name="login">Login</string>
     <string name="date"></string>
     <string name="saveButton">Save</string>
+    <string name="qrButton">QR</string>
+    <string name="cancelqrButton">Cancel</string>
 </resources>

@@ -4,10 +4,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatEditText;
+import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,12 +23,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class Entry extends AppCompatActivity {
+
+public  class Entry extends AppCompatActivity {
     TextView date;
-    EditText entryText;
+    LineEditText entryText;
     SimpleDateFormat sdf;
     String currentDate;
-    Button saveButton;
+    Button saveButton,qrButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +38,8 @@ public class Entry extends AppCompatActivity {
         setContentView(R.layout.activity_entry);
         date = (TextView) findViewById(R.id.date);
         saveButton= (Button) findViewById(R.id.saveButton);
-        entryText=(EditText) findViewById(R.id.entry);
+        qrButton=(Button) findViewById(R.id.qrButton);
+        entryText=(LineEditText) findViewById(R.id.entry);
         Intent intent= getIntent();
         if(intent.hasExtra("entryId")){ //Check if was chosen from the list or is a new entry
             saveButton.setEnabled(false);
@@ -57,8 +68,27 @@ public class Entry extends AppCompatActivity {
                 }
             });
         }
-
+        qrButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(Entry.this,Scanner.class),1);
+            }
+        });
     }
+
+    public void onActivityResult(int requestCode,int resultCode,Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        switch (requestCode){
+            case (1):{
+                if (resultCode== Activity.RESULT_OK){
+                    String resultText=data.getStringExtra("barcode");
+                    entryText.setText(entryText.getText()+resultText);
+                }
+                break;
+            }
+        }
+    }
+
 
     void populatedFieldsFromDB(int id){
         DBHelper mydb=new DBHelper(this);

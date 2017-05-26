@@ -2,6 +2,7 @@ package com.example.alexandrosandreadis.diary;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -57,9 +59,8 @@ public class EntryListDelete extends AppCompatActivity {
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
                 TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-               // TextView text2 = (TextView) view.findViewById(android.R.id.text2);
                 text1.setText(valuesList.get(0).get(position));
-               // text2.setText(valuesList.get(1).get(position));
+                text1.setTextColor(Color.WHITE);
                 return view;
             }
         };

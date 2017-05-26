@@ -3,6 +3,7 @@ package com.example.alexandrosandreadis.diary;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -87,7 +88,9 @@ public class EntryList extends AppCompatActivity {
                 TextView text1 = (TextView) view.findViewById(android.R.id.text1);
                 TextView text2 = (TextView) view.findViewById(android.R.id.text2);
                 text1.setText(valuesList.get(0).get(position));
+                text1.setTextColor(Color.WHITE);
                 text2.setText(valuesList.get(1).get(position));
+                text2.setTextColor(Color.WHITE);
                 return view;
             }
         };
