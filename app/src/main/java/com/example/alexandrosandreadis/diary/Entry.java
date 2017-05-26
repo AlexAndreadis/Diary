@@ -5,26 +5,22 @@ import java.util.Date;
 import java.util.Locale;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatEditText;
-import android.util.AttributeSet;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 
-public  class Entry extends AppCompatActivity {
+public  class Entry extends AppCompatActivity  {
     TextView date;
     LineEditText entryText;
     SimpleDateFormat sdf;
@@ -40,6 +36,8 @@ public  class Entry extends AppCompatActivity {
         saveButton= (Button) findViewById(R.id.saveButton);
         qrButton=(Button) findViewById(R.id.qrButton);
         entryText=(LineEditText) findViewById(R.id.entry);
+        entryText.setMovementMethod(LinkMovementMethod.getInstance());
+
         Intent intent= getIntent();
         if(intent.hasExtra("entryId")){ //Check if was chosen from the list or is a new entry
             saveButton.setEnabled(false);
@@ -76,6 +74,14 @@ public  class Entry extends AppCompatActivity {
         });
     }
 
+
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(Entry.this,EntryList.class));
+        finish();
+    }
+
     public void onActivityResult(int requestCode,int resultCode,Intent data){
         super.onActivityResult(requestCode,resultCode,data);
         switch (requestCode){
@@ -88,6 +94,7 @@ public  class Entry extends AppCompatActivity {
             }
         }
     }
+
 
 
     void populatedFieldsFromDB(int id){

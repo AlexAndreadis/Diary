@@ -36,7 +36,7 @@ public class Unlock extends AppCompatActivity {
         SharedPreferences sharedPref=getSharedPreferences(pref, Context.MODE_PRIVATE);
         if(sharedPref.contains(pass)){
             if(passIn.equals( sharedPref.getString(pass,null))){
-                startActivity(new Intent(Unlock.this, EntryList.class));
+                startService(new Intent(this,AccelerometerService.class));
                 super.finish();
             }else{
                 Toast.makeText(getApplicationContext(),"Wrong Password",Toast.LENGTH_SHORT).show();

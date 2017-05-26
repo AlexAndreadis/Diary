@@ -43,7 +43,10 @@
         app:layout_constraintTop_toBottomOf="@+id/saveButton"
         app:layout_constraintVertical_bias="0.0"
         app:layout_editor_absoluteX="16dp"
-        app:layout_editor_absoluteY="47dp" />
+        app:layout_editor_absoluteY="47dp"
+        android:linksClickable="true"
+        android:autoLink="web|email"
+        />
 
     <Button
         style="@style/buttonstyle"
